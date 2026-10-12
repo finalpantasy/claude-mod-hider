@@ -1,5 +1,14 @@
 # Claude Mod Hider
 
+> **Moved:** Claude Mod Hider now lives in [Claude Mod Pack](https://github.com/finalpantasy/claude-mod-pack), with the other small mods. Install it from there:
+>
+> ```
+> /plugin marketplace add finalpantasy/claude-mod-pack
+> /plugin install claude-mod-hider@claude-mod-pack
+> ```
+>
+> This repo is archived.
+
 **One tiny button that hides every Claude Code mod above your prompt, and brings them all back.**
 
 Running a few Claude Code mods (status bands, agent trackers, idle games) is great until you shrink the window and they push your prompt halfway up the screen. Claude Mod Hider puts a single arrow in the top-right corner of the band above the prompt, beside your mods, so it never adds a line. Click it and every mod there folds away; click again and they are back. It remembers your choice across sessions.
