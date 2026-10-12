@@ -1,0 +1,8 @@
+{
+  "name": "hide-mods",
+  "version": "0.1.0",
+  "description": "One button that hides or shows everything mods draw above the prompt; it remembers across sessions.",
+  "author": { "name": "finalpantasy" },
+  "types": "./types/index.d.ts",
+  "license": "MIT"
+}
