@@ -11,7 +11,7 @@ Handy when the window is narrow and the mod bands push the prompt up.
 /plugin install hide-mods@hide-mods
 ```
 
-Restart Claude Code. Click **Hide mods** (top right, above the prompt) or type `/hide-mods`. Click **Show mods** or type `/hide-mods` again to bring them back.
+Restart Claude Code. Click the small **▾** in the bottom-left corner of the band above the prompt, or type `/hide-mods`. Click **▸ mods** or type `/hide-mods` again to bring them back.
 
 ## How it works
 

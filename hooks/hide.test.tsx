@@ -23,7 +23,7 @@ test('hiding drops everything beneath and keeps the button; showing brings it ba
     await $.command.run({ ...RUN, command: 'hide-mods', args: '' })
     const hiddenView = await texts()
     expect(hiddenView).not.toContain('other mod')
-    expect(hiddenView).toMatch(/Show mods|to show/)
+    expect(hiddenView).toContain('▸ mods')
     await $.command.run({ ...RUN, command: 'hide-mods', args: '' })
     expect(await texts()).toContain('other mod')
   }

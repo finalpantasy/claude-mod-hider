@@ -35,15 +35,16 @@ export const register: Register = on => {
     const { Box, Text } = ui
     const Button = 'Button' in ui ? ui.Button : null
     const isHidden = await read($, hidden)
+    // As small as a control gets: an arrow in the bottom-left corner, clear of anything mods put on the right.
     const control = Button
-      ? <Button key="hide-mods" label={isHidden ? '▸ Show mods' : '▾ Hide mods'} plain onPress={() => void toggle($)} />
-      : <Text key="hide-mods" dimColor>{isHidden ? 'mods hidden · /hide-mods to show' : '/hide-mods to hide'}</Text>
-    if (isHidden) return <Box flexDirection="row" justifyContent="flex-end" paddingX={1}>{control}</Box>
+      ? <Button key="hide-mods" label={isHidden ? '▸ mods' : '▾'} plain onPress={() => void toggle($)} />
+      : <Text key="hide-mods" dimColor>{isHidden ? '▸ mods (/hide-mods)' : '▾'}</Text>
+    if (isHidden) return <Box flexDirection="row">{control}</Box>
     const below = await next(e).catch(() => null)
     return (
       <Box flexDirection="column">
-        <Box flexDirection="row" justifyContent="flex-end" paddingX={1}>{control}</Box>
         {below}
+        <Box flexDirection="row">{control}</Box>
       </Box>
     )
   })
