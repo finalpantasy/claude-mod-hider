@@ -1,8 +1,8 @@
 {
-  "name": "hide-mods",
+  "name": "claude-mod-hider",
   "owner": { "name": "finalpantasy" },
-  "description": "hide-mods: one button that hides every mod above the prompt in Claude Code",
+  "description": "Claude Mod Hider: one tiny button that hides every Claude Code mod above the prompt",
   "plugins": [
-    { "name": "hide-mods", "source": "./", "description": "One button that hides or shows everything mods draw above the prompt." }
+    { "name": "claude-mod-hider", "source": "./", "description": "One button that hides or shows everything mods draw above the prompt." }
   ]
 }

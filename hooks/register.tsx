@@ -5,7 +5,7 @@ import type { EngineInterface, Register } from 'claude-code'
 // Hidden, this hook draws only the button and does not hand the band on, so mods beneath it never draw;
 // mods above it in the chain read the same switch and pass. The choice is kept across sessions.
 
-const hidden = atom({ plugin: 'hide-mods', key: 'hidden' } as const, false)
+const hidden = atom({ plugin: 'claude-mod-hider', key: 'hidden' } as const, false)
 
 async function toggle($: EngineInterface) {
   const next = !(await read($, hidden))
@@ -35,16 +35,17 @@ export const register: Register = on => {
     const { Box, Text } = ui
     const Button = 'Button' in ui ? ui.Button : null
     const isHidden = await read($, hidden)
-    // As small as a control gets: an arrow in the bottom-left corner, clear of anything mods put on the right.
     const control = Button
       ? <Button key="hide-mods" label={isHidden ? '▸ mods' : '▾'} plain onPress={() => void toggle($)} />
       : <Text key="hide-mods" dimColor>{isHidden ? '▸ mods (/hide-mods)' : '▾'}</Text>
     if (isHidden) return <Box flexDirection="row">{control}</Box>
+    // Shown, the arrow takes a narrow column beside the other mods, in the top-right corner, not a row of its own:
+    // the band is no taller than the mods make it.
     const below = await next(e).catch(() => null)
     return (
-      <Box flexDirection="column">
-        {below}
-        <Box flexDirection="row">{control}</Box>
+      <Box flexDirection="row">
+        <Box flexDirection="column" flexGrow={1} flexShrink={1}>{below}</Box>
+        <Box flexShrink={0} marginLeft={1} alignSelf="flex-start">{control}</Box>
       </Box>
     )
   })

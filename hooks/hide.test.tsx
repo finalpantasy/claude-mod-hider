@@ -14,7 +14,7 @@ test('hiding drops everything beneath and keeps the button; showing brings it ba
   await $.session.start({ cwd: '/repo', surface: 'terminal', isInteractive: true } as never)
   for (const surface of ['terminal', 'desktop'] as const) {
     const texts = async () => {
-      const ui = await $.ui.mount({ plugin: 'hide-mods', surface, ...BAND })
+      const ui = await $.ui.mount({ plugin: 'claude-mod-hider', surface, ...BAND })
       const all = JSON.stringify(await ui.findAll({ type: 'Text' })) + JSON.stringify(await ui.findAll({ type: 'Button' } as never))
       await ui.unmount()
       return all

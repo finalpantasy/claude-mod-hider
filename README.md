@@ -1,24 +1,28 @@
-# hide-mods
+# Claude Mod Hider
 
-One button above the prompt in Claude Code that hides or shows everything mods draw there. The button itself always stays, and your choice is remembered across sessions.
+**One tiny button that hides every Claude Code mod above your prompt, and brings them all back.**
 
-Handy when the window is narrow and the mod bands push the prompt up.
+Running a few Claude Code mods (status bands, agent trackers, idle games) is great until you shrink the window and they push your prompt halfway up the screen. Claude Mod Hider puts a single arrow in the top-right corner of the band above the prompt, beside your mods, so it never adds a line. Click it and every mod there folds away; click again and they are back. It remembers your choice across sessions.
+
+![Claude Mod Hider in Claude Code: the arrow (boxed) sits in the top-right corner of the mod band, adding no extra line](docs/shown.png)
+
+Click the arrow and the whole band folds down to a single **▸ mods** button.
 
 ## Install
 
 ```
-/plugin marketplace add finalpantasy/hide-mods
-/plugin install hide-mods@hide-mods
+/plugin marketplace add finalpantasy/claude-mod-hider
+/plugin install claude-mod-hider@claude-mod-hider
 ```
 
-Restart Claude Code. Click the small **▾** in the bottom-left corner of the band above the prompt, or type `/hide-mods`. Click **▸ mods** or type `/hide-mods` again to bring them back.
+Restart Claude Code. Click the small **▾** in the top-right corner of the band above the prompt, or type `/hide-mods`. Click **▸ mods**, or type `/hide-mods` again, to bring them back.
 
-## How it works
+## Works with every mod, best with ones that opt in
 
-While hidden, hide-mods draws only its button and does not hand the band on, so every mod drawn beneath it in the chain disappears. Claude Code does not document the order mods draw in, so a mod drawn above hide-mods can still show. To make your own mod hide reliably, read the switch and pass while it is on:
+While hidden, Claude Mod Hider draws only its arrow and does not hand the band on, so every mod drawn beneath it disappears. Claude Code does not document the order mods draw in, so a mod drawn above it can still show. Mod authors can make their mod hide reliably with two lines:
 
 ```tsx
-const modsHidden = atom({ plugin: 'hide-mods', key: 'hidden' } as const, false)
+const modsHidden = atom({ plugin: 'claude-mod-hider', key: 'hidden' } as const, false)
 
 on('ui.render', { component: 'AbovePrompt' }, async ($, e, next) => {
   if (e.props.hasSurvey || (await read($, modsHidden))) return next(e)
@@ -26,10 +30,10 @@ on('ui.render', { component: 'AbovePrompt' }, async ($, e, next) => {
 })
 ```
 
-and declare it in your mod's type contract, inside `interface PluginState`:
+and in your mod's type contract, inside `interface PluginState`:
 
 ```ts
-'hide-mods': { hidden: boolean }
+'claude-mod-hider': { hidden: boolean }
 ```
 
 A survey always gets the band, hidden or not.
